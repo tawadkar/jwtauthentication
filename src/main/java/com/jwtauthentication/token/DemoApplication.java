@@ -1,4 +1,4 @@
-package com.jwtauthentication.token.demo;
+package com.jwtauthentication.token;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
