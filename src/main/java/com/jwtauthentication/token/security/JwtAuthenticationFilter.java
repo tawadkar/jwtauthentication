@@ -18,6 +18,16 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+/**
+ * Create JWTAuthenticationFilter that extends OncePerRequestFilter and override method and write the logic to check the token that is comming in header. 
+ * This class contains below 5 logics:
+
+ 1.Get Token from request
+ 2.Validate Token
+ 3.GetUsername from token
+ 4.Load user associated with this token
+ 5.Set authentication
+ **/
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	

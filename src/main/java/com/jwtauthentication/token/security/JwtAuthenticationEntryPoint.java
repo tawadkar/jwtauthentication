@@ -11,6 +11,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Create Class JWTAthenticationEntryPoint that implement AuthenticationEntryPoint. 
+ * Method of this class is called whenever an exception is thrown due to unauthenticated user trying to access the resource that required authentication.
+ * */
+
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	
 	public void commence (HttpServletRequest request, HttpServletResponse response,AuthenticationException authException) throws IOException,ServletException {

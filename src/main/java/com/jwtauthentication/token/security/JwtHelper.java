@@ -13,6 +13,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
+/***
+ * This class contains method related to perform operations with jwt token like generateToken, validateToken etc.
+ * 
+ * */
 public class JwtHelper {
 
     //requirement :
