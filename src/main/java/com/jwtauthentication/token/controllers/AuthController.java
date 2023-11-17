@@ -1,4 +1,4 @@
-package com.jwtauthentication.token.config;
+package com.jwtauthentication.token.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
