@@ -2,6 +2,7 @@ package com.jwtauthentication.token.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -10,6 +11,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.jwtauthentication.token.security.JwtAuthenticationEntryPoint;
 import com.jwtauthentication.token.security.JwtAuthenticationFilter;
 
+
+@Configuration
 public class SecurityConfig {
 	
 	@Autowired 
@@ -18,8 +21,8 @@ public class SecurityConfig {
 	@Autowired
 	private JwtAuthenticationFilter filter;
 	
+		
 	@Bean
-	
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		http.csrf(csrf -> csrf.disable())
