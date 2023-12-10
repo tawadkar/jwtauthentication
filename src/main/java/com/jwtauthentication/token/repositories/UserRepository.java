@@ -11,5 +11,6 @@ public interface UserRepository extends JpaRepository<User,String> {
 	
 	//Implementation for below method will be automatically done by jpa
 	public Optional <User> findByEmail(String email); 
-   
+	
+	public Optional<User> findByName(String name);
 }

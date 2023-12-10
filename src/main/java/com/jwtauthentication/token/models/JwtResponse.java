@@ -20,6 +20,8 @@ public class JwtResponse {
 	
 	private String username;
 	
+	private String refreshToken;
+	
 	public String getJwtToken() {
 		return jwtToken;
 	}

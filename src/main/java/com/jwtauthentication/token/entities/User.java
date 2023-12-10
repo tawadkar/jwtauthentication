@@ -7,8 +7,11 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +37,10 @@ public class User implements UserDetails{
 	public String email;
 	
 	public String password;
+	
+	@OneToOne(mappedBy = "user")
+	@JsonIgnore
+	private RefreshToken refreshToken;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

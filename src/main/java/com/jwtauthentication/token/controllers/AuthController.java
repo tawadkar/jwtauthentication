@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jwtauthentication.token.entities.RefreshToken;
 import com.jwtauthentication.token.entities.User;
 import com.jwtauthentication.token.models.JwtRequest;
 import com.jwtauthentication.token.models.JwtResponse;
 import com.jwtauthentication.token.security.JwtHelper;
+import com.jwtauthentication.token.services.RefreshTokenService;
 import com.jwtauthentication.token.services.UserService;
 
 @RestController
@@ -37,6 +39,9 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private RefreshTokenService refreshTokenService;
+	
 	@PostMapping("/login")
 		
 		public ResponseEntity<JwtResponse> login (@RequestBody JwtRequest request){
@@ -46,9 +51,12 @@ public class AuthController {
 
 	        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
 	        String token = this.helper.generateToken(userDetails);
+	        
+	        RefreshToken refreshToken  = refreshTokenService.createRefreshToken(userDetails.getUsername());
 
 	        JwtResponse response = JwtResponse.builder()
 	                .jwtToken(token)
+	                .refreshToken(refreshToken.getRefreshToken())
 	                .username(userDetails.getUsername()).build();
 	        return new ResponseEntity<>(response, HttpStatus.OK);
 		}
