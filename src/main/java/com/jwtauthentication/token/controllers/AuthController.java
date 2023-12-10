@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jwtauthentication.token.entities.User;
 import com.jwtauthentication.token.models.JwtRequest;
 import com.jwtauthentication.token.models.JwtResponse;
 import com.jwtauthentication.token.security.JwtHelper;
+import com.jwtauthentication.token.services.UserService;
 
 @RestController
 @RequestMapping("/auth")
@@ -31,6 +33,9 @@ public class AuthController {
 	
 	@Autowired
 	private JwtHelper helper;
+	
+	@Autowired
+	private UserService userService;
 	
 	@PostMapping("/login")
 		
@@ -68,8 +73,10 @@ public class AuthController {
 
 	
 	  
-	
-	
+	@PostMapping("/createuser")
+	public User createUser(@RequestBody User user) {
+		return userService.createUser(user);
+	}
 
 		
 	}
