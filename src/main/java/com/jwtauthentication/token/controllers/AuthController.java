@@ -18,6 +18,7 @@ import com.jwtauthentication.token.entities.RefreshToken;
 import com.jwtauthentication.token.entities.User;
 import com.jwtauthentication.token.models.JwtRequest;
 import com.jwtauthentication.token.models.JwtResponse;
+import com.jwtauthentication.token.models.RefreshTokenRequest;
 import com.jwtauthentication.token.security.JwtHelper;
 import com.jwtauthentication.token.services.RefreshTokenService;
 import com.jwtauthentication.token.services.UserService;
@@ -73,6 +74,20 @@ public class AuthController {
         }
 
     }
+	
+	@PostMapping("/refresh")
+	public JwtResponse  refreshJwtToken(@RequestBody RefreshTokenRequest request ){
+		RefreshToken refreshToken  = refreshTokenService.verifyRefreshToken(request.getRefreshToken());
+		
+		User user = refreshToken.getUser();
+		
+		String token  = this.helper.generateToken(user);
+		
+		return JwtResponse.builder().refreshToken(refreshToken.getRefreshToken())
+				.jwtToken(token)
+				.username(user.getEmail())
+				.build();
+	}
 	
 	 @ExceptionHandler(BadCredentialsException.class)
 	    public String exceptionHandler() {

@@ -14,7 +14,7 @@ import com.jwtauthentication.token.repositories.UserRepository;
 @Service
 public class RefreshTokenService {
 	
-	public long refreshTokenValidity = 5*60*60*10000;
+	public long refreshTokenValidity = 2*60*1000;
 	
 	@Autowired
 	private RefreshTokenRepository refreshTokenRepository;
